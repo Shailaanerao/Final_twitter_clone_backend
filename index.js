@@ -26,6 +26,14 @@ const allowedOrigins = [
     "https://serene-daffodil-5eaf62.netlify.app"
 ];
 
+// const corsOptions={
+//     // origin:"http://localhost:3000",
+//     origin:"http://localhost:3000",
+//     credentials:true
+
+// }
+// app.use(cors(corsOptions))
+
 const corsOptions = {
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
