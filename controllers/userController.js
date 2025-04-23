@@ -70,6 +70,18 @@ export const Login= async (req,res)=>{
             userId:user._id
         }
         const token = await jwt.sign(tokenData,process.env.TOKEN_SECRET,{expiresIn:"1d"})
+
+        // set token as cookie here:
+
+       // Express.js example
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV==='production',
+            sameSite: "None", 
+            maxAGE:24*60*60*1000,
+        });
+        
+
         return res.status(201).cookie("token",token,{expiresIn:"1d",httpOnly:true}).json({
             message:`Welocome back ${user.name}`,
             user,
